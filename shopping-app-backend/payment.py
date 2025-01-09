@@ -9,4 +9,3 @@ class Payment:
             print(f"Payment of Rs. {self.amount} will be processed through Debit Card.")
         else:
             print(f"Unknown payment method.")
-
