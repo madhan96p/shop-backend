@@ -1,4 +1,3 @@
-# catalog.py
 import pandas as pd
 from utils.db_mock import products_db
 

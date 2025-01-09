@@ -90,9 +90,9 @@ def user_login():
         if choice == 'yes':
             new_password = input("Enter a new password: ")
             users_db[user_username] = new_password
-            save_users(users_db)  # Save the new user to the file
+            save_users(users_db) 
             print(f"Registration successful! {user_username} is now registered.")
-            user_login()  # Automatically log the user in
+            user_login()  
         else:
             print("Exiting...")
 
@@ -105,7 +105,7 @@ def main():
         catalog = Catalog()
         admin_page(catalog)
     elif user_type == 'user':
-        user_login()  # Call the renamed function
+        user_login()  
     else:
         print("Invalid input. Please enter 'admin' or 'user'.")
 

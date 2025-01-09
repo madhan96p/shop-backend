@@ -16,7 +16,6 @@ def admin_page(catalog):
             st.success("Admin login successful!")
             action = st.selectbox("Admin actions", ["", "Add Product", "Remove Product", "Add Category", "Remove Category", "View Catalog"])
 
-            # Handling each admin action
             if action == "Add Product":
                 product_name = st.text_input("Enter product name:")
                 product_category = st.text_input("Enter product category:")
@@ -40,11 +39,11 @@ def admin_page(catalog):
             elif action == "Add Category":
                 new_category = st.text_input("Enter new category:")
                 if st.button("Add Category"):
-                    # Add category logic (Assuming you have a method for that)
+                    
                     st.success(f"Category '{new_category}' added successfully!")
 
             elif action == "Remove Category":
-                # Remove category logic (Provide the list of categories to remove)
+                
                 st.warning("Removing category feature is not implemented yet.")
 
             elif action == "View Catalog":
@@ -54,7 +53,6 @@ def admin_page(catalog):
         else:
             st.error("Invalid admin credentials.")
 
-# Function for User Login
 def user_login():
     user_username = st.text_input("Enter username: ")
     
@@ -65,13 +63,11 @@ def user_login():
             if user.login():
                 st.success("User login successful!")
                 
-                # Catalog view
                 catalog = Catalog()
                 st.write("Catalog:")
                 product_list = catalog.view_products()
                 st.dataframe(product_list[['name', 'price', 'category']])
 
-                # Add to cart
                 st.write("User adds products to cart:")
                 product_id_to_add = st.number_input("Enter product ID to add to cart:", min_value=1, max_value=len(product_list), step=1)
                 quantity_to_add = st.number_input("Enter quantity to add:", min_value=1, step=1)
@@ -85,7 +81,6 @@ def user_login():
                     else:
                         st.error("Product not found in catalog.")
 
-                # Display Cart
                 st.write("Your Cart:")
                 cart_items = Cart().view_cart()
                 if cart_items:
@@ -96,7 +91,6 @@ def user_login():
                     } for item in cart_items])
                     st.dataframe(cart_df)
                     
-                    # Payment
                     total_amount = sum(item['product']['price'] * item['quantity'] for item in cart_items)
                     st.write(f"Total amount to be paid: Rs. {total_amount}")
 
@@ -113,9 +107,9 @@ def user_login():
                 new_password = st.text_input("Enter a new password: ", type="password")
                 if new_password:
                     users_db[user_username] = new_password
-                    save_users(users_db)  # Save the new user to the file
+                    save_users(users_db)  
                     st.success(f"Registration successful! {user_username} is now registered.")
-                    user_login()  # Automatically log the user in
+                    user_login()  
     else:
         st.write("No such user found.")
 

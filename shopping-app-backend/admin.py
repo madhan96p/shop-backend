@@ -5,7 +5,7 @@ class Admin:
     def __init__(self, username, password, catalog):
         self.username = username
         self.password = password
-        self.admin_users = {"admin": "admin123"}  # List of admin users
+        self.admin_users = {"admin": "admin123"} 
         self.catalog = catalog
 
     def login(self):
