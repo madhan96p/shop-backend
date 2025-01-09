@@ -1,0 +1,30 @@
+Create a new repository (e.g., shopping-app-backend).
+shopping-app-backend/
+├── admin.py
+├── cart.py
+├── catalog.py
+├── login.py
+├── payment.py
+├── main.py
+├── utils/
+│   └── db_mock.py
+└── README.md
+        login.py: 
+            Handle user and admin login logic (mock data and session handling).        
+        catalog.py: 
+            Define the catalog with categories and product details.        
+        cart.py: 
+            Handle cart management features (add/remove items).        
+        payment.py: 
+            Simulate payment options (UPI, PayPal, etc.).        
+        admin.py: 
+            Implement admin functions like adding/removing products and categories.
+        main.py: 
+            Write the main driver code to initialize the app and handle user input.
+---
+
+# Set Up Virtual Environment 
+- pip install virtualenv
+- virtualenv venv
+- venv\Scripts\activate
+- pip install flask
