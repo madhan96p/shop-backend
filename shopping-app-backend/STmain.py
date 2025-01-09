@@ -14,26 +14,35 @@ def admin_page(catalog):
         admin = Admin(admin_username, admin_password, catalog)
         if admin.login():
             st.success("Admin login successful!")
-            action = st.selectbox("Admin actions", ["", "Add Product", "Remove Product", "Add Category", "Remove Category", "View Catalog"])
+            if "admin_action" not in st.session_state:
+                st.session_state["admin_action"] = ""
 
-            if action == "Add Product":
+            action = st.selectbox(
+                "Admin actions", 
+                ["", "Add Product", "Remove Product", "Add Category", "Remove Category", "View Catalog"],
+                key="admin_action"  # Use the session state key
+            )
+
+            if st.session_state["admin_action"] == "Add Product":
+                st.write('hi')
                 product_name = st.text_input("Enter product name:")
                 product_category = st.text_input("Enter product category:")
                 product_price = st.number_input("Enter product price:", min_value=0)
+                
                 if st.button("Add Product"):
                     if product_name and product_category and product_price:
-                        new_product = {"id": len(catalog.view_products()) + 1, "name": product_name, "category": product_category, "price": product_price}
-                        catalog.add_product(new_product)
+                        new_product = {"id": len(Catalog.view_products()) + 1, "name": product_name, "category": product_category, "price": product_price}
+                        Catalog.add_product(new_product)
                         st.success(f"Product '{product_name}' added successfully!")
                     else:
                         st.error("Please fill in all the fields.")
 
             elif action == "Remove Product":
-                product_list = catalog.view_products()
+                product_list = Catalog.view_products()
                 product_to_remove = st.selectbox("Select product to remove", product_list['name'])
                 if st.button("Remove Product"):
                     product_to_remove_id = product_list[product_list['name'] == product_to_remove]['id'].values[0]
-                    catalog.remove_product(product_to_remove_id)
+                    Catalog.remove_product(product_to_remove_id)
                     st.success(f"Product '{product_to_remove}' removed successfully!")
 
             elif action == "Add Category":
@@ -48,7 +57,7 @@ def admin_page(catalog):
 
             elif action == "View Catalog":
                 st.write("Product Catalog:")
-                st.dataframe(catalog.view_products())
+                st.dataframe(Catalog.view_products())
 
         else:
             st.error("Invalid admin credentials.")

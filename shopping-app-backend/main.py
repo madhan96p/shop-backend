@@ -17,9 +17,9 @@ def admin_page(catalog):
             print("\nAdmin actions:")
             print("1. Add Product")
             print("2. Remove Product")
-            print("3. Add Category")
-            print("4. Remove Category")
-            print("5. View Catalog")
+            print("3. View Catalog")
+            print("4. View Users")
+            print("5. Remove User")
             print("6. Exit")
 
             choice = int(input("Choose an action (1-6): "))
@@ -28,11 +28,21 @@ def admin_page(catalog):
             elif choice == 2:
                 admin.remove_product()
             elif choice == 3:
-                admin.add_category()
-            elif choice == 4:
-                admin.remove_category()
-            elif choice == 5:
                 admin.view_catalog()
+            elif choice == 4:
+                # Option to view all users
+                print("\nRegistered Users:")
+                for username, password in users_db.items():
+                    print(f"Username: {username}, Password: {password}")
+            elif choice == 5:
+                # Option to remove a user
+                username_to_remove = input("Enter the username to remove: ")
+                if username_to_remove in users_db:
+                    del users_db[username_to_remove]
+                    save_users(users_db)  # Save the updated user database to JSON
+                    print(f"User '{username_to_remove}' has been removed.")
+                else:
+                    print(f"User '{username_to_remove}' not found.")
             elif choice == 6:
                 print("Exiting admin page...")
                 break
@@ -40,6 +50,7 @@ def admin_page(catalog):
                 print("Invalid choice. Please try again.")
     else:
         print("Invalid admin credentials.")
+
 
 
 def user_login():
