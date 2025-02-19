@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": "0ab2044f-6733-42d5-9d3b-85653014175b",
+        "name": "Laptop (Dell)",
+        "category": "Electronic",
+        "price": 38000.0
+    },
+    {
+        "id": 2,
+        "name": "mouse",
+        "category": "electronic",
+        "price": 250.0
+    },
+    {
+        "id": 3,
+        "name": "pc",
+        "category": "electronic",
+        "price": 45000.0
+    },
+    {
+        "id": 4,
+        "name": "books",
+        "category": "study",
+        "price": 149.0
+    }
+]
